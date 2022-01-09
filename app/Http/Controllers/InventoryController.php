@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Inventory;
+use App\Exports\InventoryExport;
+use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Http\Request;
 
 class InventoryController extends Controller
@@ -117,6 +119,7 @@ class InventoryController extends Controller
     }
 
     public function export(){
-        echo "here";
+
+        return Excel::download(new InventoryExport, 'inventory.csv');
     }
 }
